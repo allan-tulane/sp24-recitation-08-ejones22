@@ -13,20 +13,18 @@ def shortest_shortest_path(graph, source):
       (shortest path weight, shortest path number of edges). See test case for example.
     """
     shortest_paths = {vertex: (float('inf'), float('inf')) for vertex in graph}
-    shortest_paths[source] = (0, 0)  # Distance and edges to source is zero
-
-    # priority queue to keep track of the minimum path and edges (weight, edges, vertex)
+    shortest_paths[source] = (0, 0)  
     priority_queue = [(0, 0, source)]
 
     while priority_queue:
         current_distance, current_edges, current_vertex = heapq.heappop(priority_queue)
 
-        # for each neighbor in the graph's current vertex
+
         for neighbor, weight in graph[current_vertex]:
             distance = current_distance + weight
             edges = current_edges + 1
 
-            # check if found a shorter path, or same length but fewer edges
+
             if (distance < shortest_paths[neighbor][0]) or (distance == shortest_paths[neighbor][0] and edges < shortest_paths[neighbor][1]):
                 shortest_paths[neighbor] = (distance, edges)
                 heapq.heappush(priority_queue, (distance, edges, neighbor))
@@ -42,7 +40,7 @@ def bfs_path(graph, source):
       a dict where each key is a vertex and the value is the parent of 
       that vertex in the shortest path tree.
     """
-    ###TODO
+
     parents = {source: None}
     queue = deque([source])
 
@@ -71,7 +69,7 @@ def get_path(parents, destination):
       The shortest path from the source node to this destination node 
       (excluding the destination node itself). See test_get_path for an example.
     """
-    ###TODO
+
     path = []
 
     while parents[destination] is not None:
